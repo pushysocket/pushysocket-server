@@ -1,0 +1,46 @@
+body {
+    font-family: sans-serif;
+    color: rgb(30,30,30)
+}
+span.user {
+    padding-right: 5px;
+    font-weight: bold;
+}
+.messages {
+    height: 60%;    
+    overflow-y: scroll;
+}
+.send {
+  position: absolute;
+  height: 40%;
+  left: 1px;
+  right: 1px; 
+  bottom: 1px;
+  border: 1px solid #CCC; 
+}
+textarea:focus {
+    outline: none;
+}
+textarea {
+    height: 99%; width:99%;
+    margin: 0; border: 0;
+}
+.box {
+    position: relative;
+    background: rgba(70,90,110,.05);
+    height: 400px;
+    margin: auto;
+    width: 90%;
+    max-width: 700px;
+    border: 1px solid #aaa;
+}
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+li {
+    padding: 5px;    
+}
+li:nth-child(even) {
+    background: rgba(176, 196, 222,.1);    
+}
