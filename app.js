@@ -5,8 +5,7 @@ app.use(express.static(__dirname + '/public'));
 
 var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
-var chat1 = io.of('/chat1'),
-	chat2 = io.of('/chat2')
+
 
 /*
 chat1.on('connection', function(client){
@@ -29,20 +28,22 @@ Array.prototype.inject = function(element) {
 }
 
 chat.on('connection', function(client){ 
-	
-	var user
+	console.log('connected client', client.id)
+
+	var user = { name: client.id }
+
 	client.on('login', function(usr){
-		//console.log('user', user.name)
-		user = usr
+		user = usr || {}
+		user.name = user.name || client.id
+
+    	client.emit("init-messages", messages)
+		
 		chat.emit('message', {
 			user: chatname,
 			message: user.name + ' has joined'
 		})
 
-    	client.emit("init-messages", messages)
-
 		client.on('message', function(msg){
-			//console.log(user.name, ':', msg.message)
 			var message = {
 				user: user.name,
 				message: msg.message
@@ -55,7 +56,7 @@ chat.on('connection', function(client){
     client.on('disconnect', function() {
         chat.emit('message', {
 			user: chatname,
-			message: (user ? user.name : '<unknown>') + ' has left'
+			message: user.name + ' has left'
 		})
     })
 

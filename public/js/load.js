@@ -2,28 +2,30 @@
 var socket = io.connect('/chat')
 socket.on('connect', function(){
 
-
-	socket.on('disconnect', function(){});
+	socket.on('disconnect', function(){
+		console.log('disconnected...')
+	})
 	
 	var ractive = new Ractive({
 		el: '#container',
 		template: '#chat',
 		data: { messages: [] },
 		complete: function(){
-			var r = this
+			var r = this,
+				messages = r.data.messages
+
 			this.on('login', function(e, name){
 				r.set('user', { name: name })
 				socket.emit('login', { name: name })
 
-				socket.on('init-messages', function(messages){
-					messages.forEach(function(msg){
-						r.data.messages.push(msg)	
+				socket.on('init-messages', function(msgs){
+					msgs.forEach(function(msg){
+						messages.push(msg)	
 					})
 				})
 
-				socket.on('message', function(data){
-					console.log('message')
-					r.data.messages.push(data)
+				socket.on('message', function(msg){
+					messages.push(msg)
 				})
 
 			})
