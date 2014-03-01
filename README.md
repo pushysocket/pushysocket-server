@@ -1,4 +1,4 @@
-pusysocket-server
+pushysocket-server
 =================
 
-pusysocket-server
+pushysocket-server
