@@ -1,2 +1,2 @@
 node_modules
-!node_modules/socket.io
+!node_modules/socket.io/*
