@@ -1,19 +1,28 @@
 <html>
-  <head>
-  </head>
-  <body>
-    <div class="contents">
-      <h1>Client Test</h1>
-      <div class="messages"></div>
-    </div>
-  </body>
-  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
-  <script>
-    var socket = io('http://localhost:3000');
-    socket.on('connect', function(){
-      socket.on('event', function(data){});
-      socket.on('disconnect', function(){});
-      socket.emit('event', { my: 'hello world' });
-    });
-  </script>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/chat.css">
+  	</head>
+	<body>
+		<div class="contents">
+	  		<h1>Pushysocket</h1>
+	  		<h2>Test Chat Client</h2>
+	  		<div id='#container'></div>
+		</div>
+  
+		<script src="js/Ractive.js"></script>
+		<script src="js/Ractive-transitions-fade.js"></script>
+		<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+		<script id="chat" type="text/ractive">
+{{^user}}
+<label>name:<input on-enter_kp="login:{{login}}" value="{{login}}"/></label>{{/user}}
+{{#user}}
+<h4>{{name}}</h4><div class="box"><div class="messages"><ul>{{#messages}}
+<li intro="fade"><span class="user">{{.user}}:</span><span class="message">{{message}}</span></li>{{/messages}}  
+</ul></div><div class="send"><textarea on-enter_kp="send:{{newMsg}}" value="{{newMsg}}"></textarea></div></div>{{/user}}
+
+
+
+		</script>
+		<script src="js/load.js"></script>
+  	</body>
 </html>
