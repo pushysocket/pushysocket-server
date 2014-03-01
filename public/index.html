@@ -1,0 +1,19 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="contents">
+      <h1>Client Test</h1>
+      <div class="messages"></div>
+    </div>
+  </body>
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io('http://localhost:3000');
+    socket.on('connect', function(){
+      socket.on('event', function(data){});
+      socket.on('disconnect', function(){});
+      socket.emit('event', { my: 'hello world' });
+    });
+  </script>
+</html>
