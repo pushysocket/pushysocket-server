@@ -18,7 +18,7 @@ var join = require('path').join,
 	chatapps = [{
 	namespace: '/chat',
 	certificate: {
-		cert: fs.readFileSync(join(__dirname, './_cert/Certificates.p12')),
+		cert: fs.readFileSync(join(__dirname, './_cert/iOS-sample-app.p12')),
 		passphrase: 'pushysocket'
 	}
 }]
@@ -27,8 +27,6 @@ var join = require('path').join,
 chatapps.forEach(function(options){
 	var messages = new Store(15)
 	
-
-		
 		var chat = io.of('/chat'), 
 			room = new Room(chat /*, agent*/)
 
