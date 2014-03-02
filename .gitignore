@@ -2,3 +2,4 @@ node_modules
 features
 _cert
 apnagent-ios
+lib/cert.js
