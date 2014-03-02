@@ -1,25 +1,31 @@
 <html>
 	<head>
+		<title>PushySocket test client</title>
 		<link rel="stylesheet" type="text/css" href="css/chat.css">
   	</head>
 	<body>
-		<div class="contents">
-	  		<h1>Pushysocket</h1>
-	  		<h2>Test Chat Client</h2>
-	  		<div id='#container'>Loading...</div>
-		</div>
+	  	<div id='container'>
+			
+			<div id='loading'>Loading...</div>
+		
+	  	</div>
+		
   
+		<script src="js/humane.js"></script>
 		<script src="js/Ractive.js"></script>
 		<script src="js/Ractive-transitions-fade.js"></script>
 		<script src="socket.io/socket.io.js"></script>
 		<script id="chat" type="text/ractive">
 
+
 {{^user}}
-<label>name:<input on-enter_kp="login:{{login}}" value="{{login}}"/></label>{{/user}}
+<div class="sign-in"><input on-enter_kp="login:{{login}}" value="{{login}}" class="message"/><div class="label"><label>sign-in</label></div></div>{{/user}}
 {{#user}}
-<h4>{{name}}</h4><button on-click="pause">pause</button><button on-click="resume">resume</button><br/><div class="box"><div class="messages"><ul>{{#messages}}
-<li intro="fade"><span class="user">{{.user.name}}:</span><span class="message">{{.message}}</span></li>{{/messages}}  
-</ul></div><div class="send"><textarea on-enter_kp="send:{{newMsg}}" value="{{newMsg}}"></textarea></div></div>{{/user}}
+<div class="outer"><div class="box"><div class="messages"><ul>{{#messages}}
+<li intro="fade"><span class="user">{{.user.name}}</span><span class="date">{{format(.timestamp)}}</span><div class="message">{{.message}}</div></li>{{/messages}}  
+</ul></div><div class="send"><input on-enter_kp="send:{{newMsg}}" value="{{newMsg}}" class="message"/></div></div><div class="user"><span>{{name}}</span><button on-click="pause">pause</button><button on-click="resume">resume</button></div></div>{{/user}}
+
+
 
 
 		</script>

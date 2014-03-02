@@ -51,6 +51,8 @@ chatapps.forEach(function(options){
 				}
 				console.log('login', user.name, socket.id)
 
+				refresh()
+
 				room.emit('join', {
 					user: {
 						id: user.id,
@@ -59,7 +61,6 @@ chatapps.forEach(function(options){
 					timestamp: new Date()
 				})
 
-				refresh()
 
 				function refresh(options){
 					socket.emit('refresh', messages.get(options))

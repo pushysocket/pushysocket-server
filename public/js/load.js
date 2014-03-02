@@ -1,5 +1,5 @@
 
-var socket = io.connect('/chat')
+var socket = io.connect('/chat') //http://pushysocket.nodejitsu.com:80/chat')
 
 socket.on('connect', function(){
 
@@ -10,15 +10,19 @@ socket.on('connect', function(){
 	var ractive = new Ractive({
 		el: '#container',
 		template: '#chat',
-		data: { messages: [] },
+		data: { messages: [],
+			format: humaneDate },
 		complete: function(){
 			var r = this,
 				messages = r.data.messages,
 				el
 
+			r.find('input').focus()
+
 			r.observe('messages', function(){
 				if(!el){
 					el = r.find('.messages')
+					r.find('.send input').focus()
 				}
 				el.scrollTop = el.scrollHeight-100;
 			}, { defer: true })
