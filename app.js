@@ -9,7 +9,7 @@ var server = require('http').Server(app),
 	//ChatRoom = require('./lib/chat'),
 	Store = require('./lib/in-memory-message-store')
 
-//io.set('log level', 3)
+io.set('log level', 0)
 
 
 
@@ -18,7 +18,7 @@ var join = require('path').join,
 	chatapps = [{
 	namespace: '/chat',
 	certificate: {
-		cert: fs.readFileSync(join(__dirname, './_cert/iOS-sample-app.p12')),
+		cert: fs.readFileSync(join(__dirname, './_cert/Certificates.p12')),
 		passphrase: 'pushysocket'
 	}
 }]
@@ -142,6 +142,7 @@ function Room(chat){
 		for(device in paused) {
 			var user = paused[device]
 			if(user && user.device) {
+				console.log('creating push for', user.name)
 				self.push.createMessage()
 					.device(user.device)
 					.alert(message.message)
