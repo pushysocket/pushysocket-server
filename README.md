@@ -4,8 +4,6 @@ pushysocket-server
 Chat API
 --------
 
-
-			
 	//no other messages possible until after login
 
 	//user format is open, general guidance:
@@ -40,9 +38,12 @@ Chat API
 	socket.emit('resume')
 
 	socket.on('message', function(message){
-		//where each message is
+		//where message is
 		{
-			user: { id: <sessionid>, name: <displayname> },
+			user: { 
+				id: <id>, 
+				name: <displayname> 
+			},
 			timestamp: <datetime>,
 			message: <text message>
 		}

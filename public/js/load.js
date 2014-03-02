@@ -33,14 +33,14 @@ socket.on('connect', function(){
 					messages.push(message)
 				})
 
-				socket.on('join', function(user){
-					user.message = 'joined chat'
-					messages.push(user)
+				socket.on('join', function(message){
+					message.message = 'joined chat'
+					messages.push(message)
 				})
 
-				socket.on('left', function(user){
-					user.message = 'left chat'
-					messages.push(user)
+				socket.on('left', function(message){
+					message.message = 'left chat'
+					messages.push(message)
 				})
 
 			})
