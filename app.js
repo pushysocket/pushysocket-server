@@ -7,14 +7,6 @@ var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 
 
-/*
-chat1.on('connection', function(client){
-	console.log('new connection for', 'chat1', client.id)
-})
-chat2.on('connection', function(client){
-	console.log('new connection for', 'chat2', client.id)
-})
-*/
 var chatname = 'chat',
 	chat = io.of('/' + chatname),
 	messages = [],
