@@ -10,7 +10,7 @@ Chat API
 	var user = {
 		id: 123, //meaningful app id, not used by pushysocket
 		name: name, //display name
-		device: '<a3128b5b 925cec91 978e85d7 b47651f7 1d21faad 638809b7 80b81c15 6d4040a5>' //device token for apn
+		device: '<...>' //device token for apn
 	}	
 	
 	socket.emit('login', user)
