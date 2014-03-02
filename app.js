@@ -8,6 +8,8 @@ var server = require('http').Server(app),
 	apn = require('./lib/apn')(),
 	ChatRoom = require('./lib/chat')
 
+io.set('log level', 1)
+
 var INIT_MESSAGES = 5
 function SimpleMessageStore() {
 	var self = this,
@@ -43,6 +45,9 @@ chatapps.forEach(function(options){
 	
 	//(if push...)
 	apn.create(options, function(err, agent){
+		if(err){
+			console.log('push agent err', err.message)
+		}
 		options.push = agent
 		options.chat = io.of(options.namespace)
 		var chatroom = new ChatRoom(options)

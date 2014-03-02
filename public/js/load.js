@@ -44,9 +44,18 @@ socket.on('connect', function(){
 				})
 
 			})
+
 			this.on('send', function(e, msg){
 				r.set('newMsg', '')
 				socket.emit('message', { message: msg });
+			})
+
+			this.on('pause', function(){
+				socket.emit('pause')
+			})
+
+			this.on('resume', function(){
+				socket.emit('resume')
 			})
 		},
 	  	events: {
