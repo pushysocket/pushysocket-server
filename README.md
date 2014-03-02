@@ -1,6 +1,13 @@
 pushysocket-server
 =================
 
+Realtime as a Service. 
+
+Add durable chat to apps:
+- Our smart backend keeps the conversation going with web sockets and push notifications.
+- You integrate our client SDK's into your mobile apps and web sites for easy integration and ready-made chat UI's (or roll your own).
+
+
 Chat API
 --------
 
