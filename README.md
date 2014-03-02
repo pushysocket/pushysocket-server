@@ -4,13 +4,17 @@ pushysocket-server
 Chat API
 --------
 
-	var user = {
-		id: 123,
-		name: name,
-		device: '<a3128b5b 925cec91 978e85d7 b47651f7 1d21faad 638809b7 80b81c15 6d4040a5>'
-	}
+
 			
 	//no other messages possible until after login
+
+	//user format is open, general guidance:
+	var user = {
+		id: 123, //meaningful app id, not used by pushysocket
+		name: name, //display name
+		device: '<a3128b5b 925cec91 978e85d7 b47651f7 1d21faad 638809b7 80b81c15 6d4040a5>' //device token for apn
+	}	
+	
 	socket.emit('login', user)
 
 	//login triggers
@@ -18,7 +22,10 @@ Chat API
 		messages.forEach(...
 		//where each message is
 		{
-			user: { id: <sessionid>, name: <displayname> },
+			user: { 
+				id: <id>, 
+				name: <displayname> 
+			},
 			timestamp: <datetime>,
 			message: <text message>
 		}
@@ -41,13 +48,25 @@ Chat API
 		}
 	})
 
-	socket.on('join', function(user){
-		//user.id
-		//user.name
+	socket.on('join', function(message){
+		//where message is
+		{
+			user: { 
+				id: <id>, 
+				name: <displayname> 
+			},
+			timestamp: <datetime>
+		}
 	})
 
-	socket.on('left', function(user){
-		//user.id
-		//user.name
+	socket.on('left', function(message){
+		//where message is
+		{
+			user: { 
+				id: <id>, 
+				name: <displayname> 
+			},
+			timestamp: <datetime>
+		}
 	})
 
